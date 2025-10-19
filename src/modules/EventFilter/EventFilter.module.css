@@ -1,0 +1,76 @@
+/* EventFilter.module.css */
+
+.eventFilter {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px 20px;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* SortArea */
+.sortArea {
+  display: flex;
+  gap: 10px;
+}
+
+.sortArea button {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.sortArea button:hover {
+  background-color: #f0f0f0;
+}
+
+.sortArea .active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+/* SearchArea */
+.searchArea {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.searchArea input {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1 1 120px;
+}
+
+.searchArea button {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #eee;
+  cursor: pointer;
+}
+
+.searchArea button:hover {
+  background: #ddd;
+}
+
+/* モバイルレスポンシブ */
+@media (max-width: 600px) {
+  .eventFilter {
+    gap: 10px;
+  }
+  .sortArea {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .searchArea {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

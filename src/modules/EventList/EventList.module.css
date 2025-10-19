@@ -1,0 +1,12 @@
+/* EventList.module.css */
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty {
+  color: #777;
+  text-align: center;
+  padding: 20px;
+}
