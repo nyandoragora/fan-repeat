@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import './App.css'
-import { EventPage } from './pages/EventPage//EventPage'
-
-
-
+import { EventPage } from './pages/EventPage/EventPage'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [fontSize, setFontSize] = useState('medium'); // 'small', 'medium', 'large'
+
+  // 全体のフォントサイズを動的に変更するためのクラス名
+  const appClassName = `font-size-${fontSize}`;
 
   return (
-    <>
-      <EventPage />
-    </>
+    <div className={appClassName}>
+      <EventPage fontSize={fontSize} setFontSize={setFontSize} />
+    </div>
   )
 }
 

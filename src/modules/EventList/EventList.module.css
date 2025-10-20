@@ -1,8 +1,16 @@
 /* EventList.module.css */
 
-.list {
+.swiperContainer {
+  width: 100%;
+  height: auto; /* コンテンツに合わせて高さを自動調整 */
+  padding: 20px 0; /* 上下の余白 */
+}
+
+.swiperSlide {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto; /* コンテンツに合わせて高さを自動調整 */
 }
 
 .empty {

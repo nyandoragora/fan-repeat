@@ -10,14 +10,8 @@ const AuthContext = React.createContext({
   logout: () => {},
 });
 
-export function Header() {
+export function Header({ fontSize, setFontSize }) {
   const { isLoggedIn, isLocalBusiness, hasProfile, logout } = useContext(AuthContext);
-
-  // フォントサイズ切替
-  const [fontSize, setFontSize] = useState('medium');
-  const toggleFontSize = () => {
-    setFontSize(prev => (prev === 'medium' ? 'large' : 'medium'));
-  };
 
   // モーダル表示状態
   const [showJobModal, setShowJobModal] = useState(false);
@@ -43,16 +37,19 @@ export function Header() {
   };
 
   return (
-    <header className={`${styles.header} ${styles[fontSize]}`}>
+    <header className={styles.header}>
       {/* Logo */}
       <div className={styles.logo}>
         <a href="/">CommunityEvents</a>
       </div>
 
       {/* FontSizeButton */}
-      <button className={styles.fontSizeBtn} onClick={toggleFontSize}>
-        {fontSize === 'medium' ? 'A+' : 'A-'}
-      </button>
+      <div className={styles.fontSizeControl}>
+        <span>文字サイズ:</span>
+        <button onClick={() => setFontSize('small')} className={fontSize === 'small' ? styles.active : ''}>小</button>
+        <button onClick={() => setFontSize('medium')} className={fontSize === 'medium' ? styles.active : ''}>中</button>
+        <button onClick={() => setFontSize('large')} className={fontSize === 'large' ? styles.active : ''}>大</button>
+      </div>
 
       {/* NavigationGroup */}
       <nav className={styles.navGroup}>

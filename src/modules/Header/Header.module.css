@@ -10,15 +10,6 @@
   border-bottom: 1px solid #ddd;
 }
 
-/* フォントサイズ切替 */
-.medium {
-  font-size: 16px;
-}
-
-.large {
-  font-size: 20px;
-}
-
 /* Logo */
 .logo a {
   text-decoration: none;
@@ -28,10 +19,30 @@
 }
 
 /* FontSizeButton */
-.fontSizeBtn {
-  margin-left: 10px;
-  padding: 5px 10px;
+.fontSizeControl {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 15px;
+}
+
+.fontSizeControl span {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.fontSizeControl button {
+  padding: 4px 8px;
   cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.fontSizeControl button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
 }
 
 /* NavigationGroup */
@@ -102,21 +113,30 @@
 }
 
 /* モバイルレスポンシブ */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
   }
   
   .navGroup {
+    order: 3;
     flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .localBusinessNav {
+    order: 2;
+    flex-direction: row;
     gap: 8px;
     width: 100%;
   }
 
-  .localBusinessNav {
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
+  .fontSizeControl {
+    order: 1;
+    margin-left: 0;
   }
 }
