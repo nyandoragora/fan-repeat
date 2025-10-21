@@ -5,9 +5,34 @@
   flex-direction: column;
   gap: 15px;
   padding: 10px 20px;
-  background-color: #fafafa;
-  border: 1px solid #ddd;
+  background-color: var(--color-background-card);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
+}
+
+/* フィルタ開閉ボタン */
+.filterToggleButton {
+  display: none; /* デフォルトでは非表示 */
+  padding: 10px 15px;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.filterToggleButton:hover {
+  background-color: var(--color-accent-dark);
+}
+
+/* フィルタリングコンテンツ */
+.filterContent {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 /* SortArea */
@@ -18,20 +43,20 @@
 
 .sortArea button {
   padding: 6px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-border);
   border-radius: 4px;
-  background: #fff;
+  background: var(--color-background-card);
   cursor: pointer;
 }
 
 .sortArea button:hover {
-  background-color: #f0f0f0;
+  background-color: var(--color-background-light);
 }
 
 .sortArea .active {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border-color: var(--color-accent);
 }
 
 /* SearchArea */
@@ -43,34 +68,73 @@
 
 .searchArea input {
   padding: 6px 8px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-border);
   border-radius: 4px;
-  flex: 1 1 120px;
+  flex: 1 1 auto; /* flex-basisをautoに変更 */
 }
 
 .searchArea button {
   padding: 6px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-border);
   border-radius: 4px;
-  background: #eee;
+  background: var(--color-background-light);
   cursor: pointer;
 }
 
 .searchArea button:hover {
-  background: #ddd;
+  background: var(--color-border);
 }
 
 /* モバイルレスポンシブ */
 @media (max-width: 600px) {
-  .eventFilter {
-    gap: 10px;
+  .filterToggleButton {
+    display: block; /* 小さい画面で表示 */
+    width: 100%;
   }
+
+  .filterContent {
+    display: none; /* デフォルトで非表示 */
+    flex-direction: column;
+    gap: 8px; /* ギャップを少し小さく */
+  }
+
+  .filterOpen {
+    display: flex; /* 開いているときに表示 */
+  }
+
   .sortArea {
     flex-direction: column;
-    gap: 8px;
+    gap: 6px; /* ソートボタン間のギャップを小さく */
   }
   .searchArea {
     flex-direction: column;
-    gap: 8px;
+    gap: 6px; /* 検索要素間のギャップを小さく */
+  }
+  .searchArea input {
+    width: 100%; /* 幅いっぱいに */
+    box-sizing: border-box; /* パディングとボーダーを幅に含める */
+  }
+}
+
+@media (min-width: 601px) {
+  .filterToggleButton {
+    display: none; /* 大きい画面では非表示 */
+  }
+
+  .filterContent {
+    display: flex; /* 大きい画面では常に表示 */
+    flex-direction: column; /* デフォルトのflex-directionを維持 */
+    gap: 15px; /* デフォルトのギャップを維持 */
+  }
+
+  .sortArea {
+    flex-direction: row; /* デフォルトのflex-directionを維持 */
+    gap: 10px; /* デフォルトのギャップを維持 */
+  }
+
+  .searchArea {
+    flex-direction: row; /* デフォルトのflex-directionを維持 */
+    flex-wrap: wrap;
+    gap: 10px; /* デフォルトのギャップを維持 */
   }
 }

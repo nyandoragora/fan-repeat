@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import './App.css'
-import { EventPage } from './pages/EventPage/EventPage'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { EventPage } from './pages/EventPage/EventPage';
+import { LoginPage } from './pages/LoginPage/LoginPage';
+import { AdminDashboardPage } from './pages/AdminDashboardPage/AdminDashboardPage'; // AdminDashboardPageをインポート
 
 function App() {
   const [fontSize, setFontSize] = useState('medium'); // 'small', 'medium', 'large'
@@ -10,7 +13,13 @@ function App() {
 
   return (
     <div className={appClassName}>
-      <EventPage fontSize={fontSize} setFontSize={setFontSize} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<EventPage fontSize={fontSize} setFontSize={setFontSize} />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/admin-dashboard" element={<AdminDashboardPage />} /> {/* AdminDashboardPageへのルートを追加 */}
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }

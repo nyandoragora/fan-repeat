@@ -6,8 +6,10 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #ddd;
+  background-color: var(--color-sky);
+  border-bottom: 1px solid var(--color-border);
+  position: relative; /* メニューの基準位置 */
+  z-index: 100;
 }
 
 /* Logo */
@@ -15,7 +17,42 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 1.5em;
-  color: #333;
+  color: var(--color-primary);
+}
+
+/* ハンバーガーメニューボタン */
+.hamburgerButton {
+  display: none; /* デフォルトでは非表示 */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 24px;
+  position: relative;
+  z-index: 200;
+}
+
+.hamburgerIcon {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.hamburgerIcon:nth-child(1) { top: 0; }
+.hamburgerIcon:nth-child(2) { top: 50%; transform: translateY(-50%); }
+.hamburgerIcon:nth-child(3) { top: 100%; transform: translateY(-100%); }
+
+/* メニューコンテンツ */
+.menuContent {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 /* FontSizeButton */
@@ -28,21 +65,21 @@
 
 .fontSizeControl span {
   font-size: 0.9em;
-  color: #555;
+  color: var(--color-secondary);
 }
 
 .fontSizeControl button {
   padding: 4px 8px;
   cursor: pointer;
-  border: 1px solid #ccc;
-  background-color: #fff;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background-card);
   border-radius: 4px;
 }
 
 .fontSizeControl button.active {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border-color: var(--color-accent);
 }
 
 /* NavigationGroup */
@@ -55,7 +92,7 @@
 .navGroup a,
 .navGroup button {
   text-decoration: none;
-  color: #333;
+  color: var(--color-primary);
   background: none;
   border: none;
   cursor: pointer;
@@ -80,9 +117,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: var(--color-background-card);
   padding: 20px;
-  border: 2px solid #444;
+  border: 2px solid var(--color-primary);
   border-radius: 8px;
   z-index: 1000;
   width: 90%;
@@ -103,7 +140,7 @@
 .modal input {
   padding: 5px;
   font-size: 1em;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-border);
   border-radius: 4px;
 }
 
@@ -114,29 +151,107 @@
 
 /* モバイルレスポンシブ */
 @media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  
-  .navGroup {
-    order: 3;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-    align-items: flex-start;
+  .hamburgerButton {
+    display: block; /* 小さい画面で表示 */
   }
 
+  .menuContent {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80vw; /* メニューの幅をビューポート幅の80%に */
+    height: 100%;
+    background-color: var(--color-background-light);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 60px 20px 20px; /* ヘッダーの高さ分を考慮 */
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%); /* デフォルトで非表示 */
+    transition: transform 0.3s ease-out;
+    z-index: 150;
+  }
+
+  .menuOpen {
+    transform: translateX(0); /* メニュー表示時 */
+  }
+
+  .fontSizeControl,
+  .navGroup,
   .localBusinessNav {
-    order: 2;
-    flex-direction: row;
-    gap: 8px;
     width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    margin-left: 0; /* デフォルトのmarginをリセット */
+  }
+
+  .navGroup a,
+  .navGroup button,
+  .localBusinessNav button {
+    width: 100%; /* メニュー内で幅いっぱいに */
+    text-align: left;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .navGroup button:last-child,
+  .localBusinessNav button:last-child {
+    border-bottom: none;
   }
 
   .fontSizeControl {
-    order: 1;
-    margin-left: 0;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+
+  .fontSizeControl button {
+    width: auto; /* ボタンの幅を自動調整 */
+  }
+}
+
+@media (min-width: 769px) {
+  .hamburgerButton {
+    display: none; /* 大きい画面では非表示 */
+  }
+
+  .menuContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    position: static;
+    transform: translateX(0);
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    height: auto;
+    width: auto;
+  }
+
+  .fontSizeControl {
+    margin-left: auto; /* 右端に寄せる */
+  }
+
+  .navGroup,
+  .localBusinessNav {
+    flex-direction: row;
+    gap: 15px;
+    width: auto;
+  }
+
+  .navGroup a,
+  .navGroup button,
+  .localBusinessNav button {
+    width: auto;
+    text-align: center;
+    padding: 0;
+    border-bottom: none;
+  }
+
+  .fontSizeControl {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
   }
 }

@@ -14,7 +14,7 @@
 }
 
 .empty {
-  color: #777;
+  color: var(--color-secondary);
   text-align: center;
   padding: 20px;
 }

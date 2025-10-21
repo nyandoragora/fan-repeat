@@ -1,6 +1,17 @@
-/* 基本のフォントサイズ設定 */
 :root {
   font-size: 16px; /* 中サイズをデフォルトとする */
+
+  /* カラーパレット */
+  --color-primary: #34495e; /* 深い森の緑のような、落ち着いた濃い青緑 */
+  --color-secondary: #7f8c8d; /* 中間のグレー */
+  --color-accent: #82b74b; /* 若葉のような、明るく優しい緑 */
+  --color-accent-dark: #6a9b3e; /* 少し深みのある緑 */
+  --color-sky: #87ceeb; /* 澄んだ空のような、明るい空色 */
+  --color-background-light: #f8f9fa; /* 非常に明るいグレー */
+  --color-background-card: #ffffff; /* 白 */
+  --color-border: #dcdcdc; /* 明るいグレー */
+  --color-white: #ffffff; /* 純粋な白 */
+  --color-black: #000000; /* 純粋な黒 */
 }
 
 .font-size-small {

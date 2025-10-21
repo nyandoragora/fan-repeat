@@ -28,6 +28,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--color-background-light); /* 全体の背景色を設定 */
 }
 
 h1 {
